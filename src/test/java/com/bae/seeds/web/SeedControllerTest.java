@@ -3,6 +3,7 @@ package com.bae.seeds.web;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -59,5 +60,17 @@ public class SeedControllerTest {
 	@Test
 	void deleteTest() throws Exception {
 		this.mvc.perform(delete("/delete/1")).andExpect(status().isNoContent());
+	}
+	
+	@Test
+	void updateTest() throws Exception {
+		Seed seed = new Seed(null, "leek", 4, 2, LocalDate.of(2022,1,1), true);
+		String seedJson = mapper.writeValueAsString(seed);
+		
+		Seed expected = new Seed(1, "leek", 4, 2, LocalDate.of(2022,1,1), true);
+		String expectedJson = mapper.writeValueAsString(expected);
+		
+		this.mvc.perform(put("/update/1").contentType(MediaType.APPLICATION_JSON).content(seedJson))
+		.andExpect(status().isAccepted()).andExpect(content().json(expectedJson));
 	}
 }
