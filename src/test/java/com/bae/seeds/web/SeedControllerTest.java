@@ -73,4 +73,12 @@ public class SeedControllerTest {
 		this.mvc.perform(put("/update/1").contentType(MediaType.APPLICATION_JSON).content(seedJson))
 		.andExpect(status().isAccepted()).andExpect(content().json(expectedJson));
 	}
+	
+	@Test
+	void getByIdTest() throws Exception {
+		Seed seed = new Seed(1, "Carrot", 6, 10, LocalDate.of(2022, 1, 1), true);
+		String seedJson = this.mapper.writeValueAsString(seed);
+		
+		this.mvc.perform(get("/get/1")).andExpect(status().isOk()).andExpect(content().json(seedJson));
+	}
 }
