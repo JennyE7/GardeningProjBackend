@@ -27,7 +27,7 @@ public class Seed {
 	private Integer harvestByMonth;
 	
 	@Column
-	private Date expirationDate;
+	private Date expirationDate; 	// format: new Date(YYYY-MM-DD);
 	
 	@Column
 	private boolean IsPlanted;
