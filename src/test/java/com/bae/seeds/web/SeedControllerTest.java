@@ -1,5 +1,6 @@
 package com.bae.seeds.web;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -53,5 +54,10 @@ public class SeedControllerTest {
 		
 		this.mvc.perform(get("/getAll").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(content().json(seedsJson));
+	}
+	
+	@Test
+	void deleteTest() throws Exception {
+		this.mvc.perform(delete("/delete/1")).andExpect(status().isNoContent());
 	}
 }
