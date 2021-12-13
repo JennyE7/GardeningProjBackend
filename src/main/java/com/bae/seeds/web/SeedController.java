@@ -5,18 +5,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.bae.seeds.domain.Seed;
 import com.bae.seeds.service.SeedService;
 
+@CrossOrigin
+@RestController
 public class SeedController {
 	
-	@Autowired
 	private SeedService service;
+	
+	@Autowired
+	public SeedController(SeedService service) {
+		this.service = service;
+	}
 	
 	@PostMapping("/create")
 	public ResponseEntity<Seed> create(@RequestBody Seed seed) {
@@ -30,9 +39,9 @@ public class SeedController {
 		return seeds;
 	}
 	
-	@DeleteMapping
-	public ResponseEntity<Seed> Delete(@RequestBody Seed seed) {
-		this.service.delete(seed);
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Seed> delete(@PathVariable Integer id) {
+		this.service.delete(this.service.getById(id));
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
