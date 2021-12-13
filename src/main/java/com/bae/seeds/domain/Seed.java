@@ -1,6 +1,7 @@
 package com.bae.seeds.domain;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,10 +28,10 @@ public class Seed {
 	private Integer harvestByMonth;
 	
 	@Column
-	private Date expirationDate; 	// format: new Date(YYYY-MM-DD);
+	private LocalDate expirationDate;
 	
 	@Column
-	private boolean IsPlanted;
+	private boolean isPlanted;
 	
 	public Integer getId() {
 		return id;
@@ -64,23 +65,23 @@ public class Seed {
 		this.harvestByMonth = harvestByMonth;
 	}
 
-	public Date getExpirationDate() {
+	public LocalDate getExpirationDate() {
 		return expirationDate;
 	}
 
-	public void setExpirationDate(Date expirationDate) {
+	public void setExpirationDate(LocalDate expirationDate) {
 		this.expirationDate = expirationDate;
 	}
 
 	public boolean isIsPlanted() {
-		return IsPlanted;
+		return isPlanted;
 	}
 
 	public void setIsPlanted(boolean isPlanted) {
-		IsPlanted = isPlanted;
+		this.isPlanted = isPlanted;
 	}
 
-	public Seed(Integer id, String seedName, Integer sowByMonth, Integer harvestByMonth, Date expirationDate,
+	public Seed(Integer id, String seedName, Integer sowByMonth, Integer harvestByMonth, LocalDate expirationDate,
 			boolean isPlanted) {
 		super();
 		this.id = id;
@@ -88,13 +89,13 @@ public class Seed {
 		this.sowByMonth = sowByMonth;
 		this.harvestByMonth = harvestByMonth;
 		this.expirationDate = expirationDate;
-		IsPlanted = isPlanted;
+		this.isPlanted = isPlanted;
 	}
 
 	@Override
 	public String toString() {
 		return "Seed [id=" + id + ", seedName=" + seedName + ", sowByMonth=" + sowByMonth + ", harvestByMonth="
-				+ harvestByMonth + ", expirationDate=" + expirationDate + ", IsPlanted=" + IsPlanted + "]";
+				+ harvestByMonth + ", expirationDate=" + expirationDate + ", IsPlanted=" + isPlanted + "]";
 	}
 
 	public Seed() {

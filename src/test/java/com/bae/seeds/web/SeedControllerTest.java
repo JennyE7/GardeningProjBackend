@@ -1,10 +1,13 @@
 package com.bae.seeds.web;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 import org.hibernate.validator.internal.constraintvalidators.bv.number.bound.decimal.DecimalMaxValidatorForNumber;
 import org.junit.jupiter.api.Test;
@@ -35,10 +38,20 @@ public class SeedControllerTest {
 
 	@Test
 	void createTest() throws Exception {
-		Seed seed = new Seed(2, "leek", 4, 2, new Date(2023-05-04), true);
+		Seed seed = new Seed(2, "leek", 4, 2, LocalDate.of(2022,1,1), true);
 		String seedAsJson = this.mapper.writeValueAsString(seed);
 		
 		this.mvc.perform(post("/create").contentType(MediaType.APPLICATION_JSON).content(seedAsJson))
 		.andExpect(status().isCreated()).andExpect(content().json(seedAsJson));
+	}
+	
+	@Test
+	void getAllTest() throws Exception {
+		Seed seed = new Seed(1, "Carrot", 6, 10, LocalDate.of(2022, 1, 1), true);
+		List<Seed> seeds = List.of(seed);
+		String seedsJson = this.mapper.writeValueAsString(seeds);
+		
+		this.mvc.perform(get("/getAll").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+				.andExpect(content().json(seedsJson));
 	}
 }
