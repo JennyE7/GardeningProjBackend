@@ -33,5 +33,15 @@ public class SeedService {
 	public Seed getById(Integer id) {
 		return this.repo.findById(id).get();
 	}
+	public Seed update(Integer id, Seed seed) {
+		Seed newSeed = this.getById(id);
+		newSeed.setSeedName(seed.getSeedName());
+		newSeed.setSowByMonth(seed.getSowByMonth());
+		newSeed.setHarvestByMonth(seed.getHarvestByMonth());
+		newSeed.setExpirationDate(seed.getExpirationDate());
+		newSeed.setIsPlanted(seed.isIsPlanted());
+		
+		return this.repo.save(newSeed);
+	}
 
 }
