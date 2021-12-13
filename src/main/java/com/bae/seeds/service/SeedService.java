@@ -19,5 +19,9 @@ public class SeedService {
 	public List<Seed> getAll() {
 		return this.repo.findAll();
 	}
+	
+	public void delete(Seed seed) {
+		this.repo.delete(seed);
+	}
 
 }
