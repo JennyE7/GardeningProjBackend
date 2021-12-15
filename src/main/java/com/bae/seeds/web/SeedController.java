@@ -56,7 +56,7 @@ public class SeedController {
 		return new ResponseEntity<>(this.service.getById(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/get/{name}")
+	@GetMapping("/getName/{name}")
 	public ResponseEntity<List<Seed>> getByName(@PathVariable String name) {
 		return new ResponseEntity<>(this.service.getByName(name), HttpStatus.OK);
 	}
