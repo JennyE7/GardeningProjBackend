@@ -81,4 +81,14 @@ public class SeedControllerTest {
 		
 		this.mvc.perform(get("/get/1")).andExpect(status().isOk()).andExpect(content().json(seedJson));
 	}
+	
+	@Test
+	void getByNameTest() throws Exception {
+		Seed seed = new Seed(1, "Carrot", 6, 10, LocalDate.of(2022, 1, 1), true);
+		List<Seed> seeds = List.of(seed);
+		String seedsJson = this.mapper.writeValueAsString(seeds);
+		
+		this.mvc.perform(get("/getName/carrot").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+				.andExpect(content().json(seedsJson));
+	}
 }

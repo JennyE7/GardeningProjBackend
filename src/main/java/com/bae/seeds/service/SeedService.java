@@ -43,5 +43,9 @@ public class SeedService {
 		
 		return this.repo.save(newSeed);
 	}
+	
+	public List<Seed> getByName(String name) {
+		return this.repo.findBySeedNameIgnoreCase(name);
+	}
 
 }
