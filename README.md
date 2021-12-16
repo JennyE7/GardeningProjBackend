@@ -4,7 +4,7 @@
 The objective we were given was to create a CRUD application with the utilisation of supporting tools, methodologies and technologies that encapsulate all core modules covered during training.
 
 ## Planning
-The first stage of planning was to create User Stories and add them to a Jira board. I used the specification of CRUD functionality to help write my user stories and then I expanded on them, adding child issues to each story, breaking them down into smaller, more manageable tasks.
+Once I had decided that I wanted to make an application to keep track of all the different seeds I have for gardening, the first stage of planning was to create User Stories and add them to a Jira board. I used the specification of CRUD functionality to help write my user stories and then I expanded on them, adding child issues to each story, breaking them down into smaller, more manageable tasks. I also added story point estimates to each of the child tasks and used MoSCow prioritisation on the user stories themselves (under 'Label') to decide which order to tackle them in once I started. 
 
 ![image](https://user-images.githubusercontent.com/93250564/146367943-4ee08496-7743-4245-9e71-f9bbcfce5274.png)
 
@@ -38,7 +38,7 @@ As mentioned previously, I used a Jira board to manage the project and keep trac
 
 As you can see from the roadmap above, I was succesful in completing everything I set out to and was even able to add an extra feature due to finishing both planned sprints earlier than expected.
 
-I also integrated my GitHub and Jira so that when making commits to GitHub using GitBash I could make it a smart commit to help keep track of what was happening with my Jira.
+I also integrated my GitHub and Jira so that when making commits to GitHub using GitBash I could make them smart commits to help keep track of what was happening with my Jira.
 
 <img width="431" alt="smart commit git" src="https://user-images.githubusercontent.com/93250564/146369320-55d74e6f-f6e4-40b1-9a0d-c138ec95a1c6.PNG">
 
@@ -60,6 +60,13 @@ I also used MySQL Workbench to create the database, however that was all I neede
 
 
 ## Testing
+During testing I used a loal h2 database to avoid changing the data in the "live" database.
+
+<img width="590" alt="test db" src="https://user-images.githubusercontent.com/93250564/146389138-555f9c94-a53f-4b36-b2d1-021004c65f93.PNG">
+
+I used sql data and schema files to drop the table and create a new one before each test, inserting one entry into it each time. This meant that I knew exactly what to expect from each test including id's of each record.
+
+
 For testing I used MockMVC to integration test the controller class. I did 6 of these tests to test the 6 methods in the controller class.
 
 <img width="546" alt="mockMVC" src="https://user-images.githubusercontent.com/93250564/146370932-4f771ff6-9c0c-469b-8b5e-cdb67cbd2838.PNG">
@@ -67,7 +74,7 @@ For testing I used MockMVC to integration test the controller class. I did 6 of 
 <img width="223" alt="6 tests" src="https://user-images.githubusercontent.com/93250564/146371652-d08814c2-d8f2-42f6-9918-4bf679f3c167.PNG">
 
 
-Through these integration tests I achieved over 80% test coverage. However this is a false reading due to the fact that the tests were integration tests. We had a stretch goal to use Mockito to unit test the service class, however as using Mockito with Spring was not covered I think I was missing a piece or two to be able to get the tests to work, and due to time restraints I decided against using Mockito. This was also due to the fact that the majority of the methods in the service class were just one line long and so using Mockito to mock the one method inside them is functionally pointless.
+Through these integration tests I achieved over 80% test coverage. However this is a false reading due to the fact that they are integration tests. We had a stretch goal to use Mockito to unit test the service class, however as using Mockito with Spring was not covered I think I was missing a piece or two to be able to get the tests to work, and due to time restraints I decided against using Mockito. This was also due to the fact that the majority of the methods in the service class were just one line long and so using Mockito to mock the one method inside them would be functionally pointless.
 
 <img width="194" alt="test coverage" src="https://user-images.githubusercontent.com/93250564/146371722-71fad325-3292-4e50-97b8-42e5759e5407.PNG">
 
